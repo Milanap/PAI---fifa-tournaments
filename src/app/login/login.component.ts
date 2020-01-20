@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {Router} from "@angular/router"
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,11 +12,11 @@ export class LoginComponent implements OnInit {
   title;
   login;
   loginForm: FormGroup; 
-constructor(private formBuilder: FormBuilder, private userService: UserService ) { }
+constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router ) { }
   ngOnInit() {
 	  this.login = {
-		  username: 'user2',
-		  password: 'qwerty'
+		  username: '',
+		  password: ''
 	  };
 	  
 	 this.loginForm = this.formBuilder.group({
@@ -31,9 +32,9 @@ constructor(private formBuilder: FormBuilder, private userService: UserService )
 	  this.userService.loginNewUser(this.login).subscribe(
 	  response =>{
 		  this.title='Użytkownik'+' '+this.login.username + ' został zalogowany!';
+		  this.router.navigate(['/home'])
 	  },
-	  //error =>this.title='Błędne dane!'
-	  error =>console.log('error', error,this.login.username)
+	  error =>this.title='Błędne dane!'
 	  );
   }
 }
