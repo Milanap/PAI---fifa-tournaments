@@ -1,0 +1,42 @@
+<div class="medium-list">
+  <div class="list-viewer-wrapper">
+    <div class="list-header-title">Rejestracja</div>
+
+<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && registerUser()()" novalidate> 
+      <div class="form-container">
+        <mat-form-field>
+          <input id="name"
+                 matInput				 
+                 formControlName="name"
+				 [(ngModel)]="register.username"
+                 placeholder="Wprowadź nick" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <input id="email" 
+                   matInput
+                   formControlName="email"
+				   [(ngModel)]="register.email"
+                   placeholder="Wprowadź email" />
+          </mat-form-field>
+
+        <mat-form-field>
+            <input id="password"
+                   matInput
+                   formControlName="password"
+                   placeholder="Wprowadź hasło"
+				   [(ngModel)]="register.password" type="password"
+                   [type]="hide ? 'password':'text'" />
+              <mat-icon matSuffix (click)="hide = !hide">
+                {{hide ? 'visibility' : 'visibility_off'}}
+              </mat-icon>
+          </mat-form-field>
+
+          <button mat-button type="submit" 
+                  class="mat-raised-button mat-primary" 
+                  [disabled]="!registerForm.valid">Zarejestruj się</button>
+      </div>
+    </form>
+  </div>
+  <p>{{title}}</p>
+</div>

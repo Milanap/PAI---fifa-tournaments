@@ -1,0 +1,31 @@
+<div class="medium-list">
+  <div class="list-viewer-wrapper">
+    <div class="list-header-title">Logowanie</div>
+<form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && loginUser()()" novalidate> 
+      <div class="form-container">
+        <mat-form-field>
+          <input id="username"
+                 matInput				 
+                 formControlName="username"
+				 [(ngModel)]="login.username"
+                 placeholder="WprowadŸ nazwê u¿ytkownika" />
+        </mat-form-field>
+        <mat-form-field>
+            <input id="password"
+                   matInput
+                   formControlName="password"
+                   placeholder="WprowadŸ has³o"
+				   [(ngModel)]="login.password" type="password"
+                   [type]="hide ? 'password':'text'" />
+              <mat-icon matSuffix (click)="hide = !hide">
+                {{hide ? 'visibility' : 'visibility_off'}}
+              </mat-icon>
+          </mat-form-field>
+          <button mat-button type="submit" 
+                  class="mat-raised-button mat-primary" 
+                  >Zaloguj siê</button>
+      </div>
+    </form>
+  </div>
+  <p>{{title}}</p>
+</div>
