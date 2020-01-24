@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Router} from "@angular/router"
+import {currentUser, setcurrentUser} from "../app.module";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,8 +18,7 @@ constructor(private formBuilder: FormBuilder, private userService: UserService, 
 	  this.login = {
 		  username: '',
 		  password: ''
-	  };
-	  
+	  };	  
 	 this.loginForm = this.formBuilder.group({
       'username': [this.login.username, [
         Validators.required
@@ -29,12 +29,16 @@ constructor(private formBuilder: FormBuilder, private userService: UserService, 
     });
   }
   loginUser() {
-	  this.userService.loginNewUser(this.login).subscribe(
+	  setcurrentUser(this.login.username);
+	  this.userService.loginNewUser(this.login).subscribe(	 
 	  response =>{
+		  console.log(response);
 		  this.title='Użytkownik'+' '+this.login.username + ' został zalogowany!';
+		  localStorage.setItem('token', response.token);
 		  this.router.navigate(['/home'])
 	  },
 	  error =>this.title='Błędne dane!'
 	  );
   }
+  
 }

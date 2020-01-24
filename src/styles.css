@@ -29,3 +29,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .divider {
     margin-top: 10px !important; 
   }
+  
+  .nav-link {
+    position: relative;
+	left: 89%;
+  }
