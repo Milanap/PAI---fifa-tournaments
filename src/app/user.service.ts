@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router'
 @Injectable()
 export class UserService {
+	httpHeaders = new HttpHeaders({'Content-type': 'application/json'})
 	constructor (private http: HttpClient, private _router: Router) { }
 	registerNewUser(userData): Observable<any> {
 		return this.http.post('http://127.0.0.1:8000/turniej/register/', userData);
@@ -15,6 +16,10 @@ export class UserService {
 	
 	addNewTournament(tournamentData): Observable<any> {
 		return this.http.post('http://127.0.0.1:8000/turniej/tournament/', tournamentData);
+	}
+	getAllTournaments(): Observable<any> {
+		return this.http.get('http://127.0.0.1:8000/turniej/tournament/',
+		{headers:this.httpHeaders});
 	}
 	loggedIn()
 	{
