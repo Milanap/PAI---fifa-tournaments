@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Router} from "@angular/router"
-import {currentUser, setcurrentUser} from "../app.module";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -29,7 +28,7 @@ constructor(private formBuilder: FormBuilder, private userService: UserService, 
     });
   }
   loginUser() {
-	  setcurrentUser(this.login.username);
+	  localStorage.setItem('user', this.login.username);
 	  this.userService.loginNewUser(this.login).subscribe(	 
 	  response =>{
 		  console.log(response);

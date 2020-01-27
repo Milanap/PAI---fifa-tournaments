@@ -1,0 +1,27 @@
+<div class="medium-list">
+  <div class="list-viewer-wrapper">
+    <div class="list-header-title">{{title}}</div>
+<form [formGroup]="ManagementForm" (ngSubmit)="ManagementForm.valid && addScore()" novalidate> 
+      <div class="form-container">
+        <mat-form-field>
+          <input id="firstscore"
+                 matInput				 
+                 formControlName="firstscore"
+				 [(ngModel)]="score.first"
+                 placeholder="Ilość strzelonych bramek przez pierwszego gracza" />
+        </mat-form-field>
+        <mat-form-field>
+          <input id="secondscore"
+                 matInput				 
+                 formControlName="secondscore"
+				 [(ngModel)]="score.second"
+                 placeholder="Ilość strzelonych bramek przez drugiego gracza" />
+        </mat-form-field>
+          <button mat-button type="submit" 
+                  class="mat-raised-button mat-primary"
+				[disabled]="!isStarted" 				  
+                  >Zatwierdź</button>
+      </div>
+    </form>
+  </div>
+</div>

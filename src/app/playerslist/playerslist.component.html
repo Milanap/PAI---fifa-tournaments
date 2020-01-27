@@ -1,0 +1,10 @@
+<ul>
+ <li *ngFor="let array of tournaments.playerrount; let i = index">
+ <h3>{{tournaments.playerrount[i]}}</h3>
+ </li>
+ </ul>
+ <button mat-button type="submit" 
+                  class="mat-raised-button mat-primary"
+				  [disabled]="!isSigned"
+				  (click)="addUser()"				  
+                  >Zapisz się</button>

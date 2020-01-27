@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
@@ -19,6 +18,11 @@ import { AlltournamentsComponent } from './alltournaments/alltournaments.compone
 import { UserService } from './user.service';
 import { AuthGuard } from './auth.guard';
 import { TokenIcneptorService } from './token-icneptor.service';
+import { TorunamentviewComponent } from './torunamentview/torunamentview.component';
+import { TournamentviewbarComponent } from './tournamentviewbar/tournamentviewbar.component';
+import { PlayerslistComponent } from './playerslist/playerslist.component';
+import { BracketComponent } from './bracket/bracket.component';
+import { TournamentmanagementComponent } from './tournamentmanagement/tournamentmanagement.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +35,11 @@ import { TokenIcneptorService } from './token-icneptor.service';
     NewtournamentComponent,
     MytournamentsComponent,
     AlltournamentsComponent,
+    TorunamentviewComponent,
+    TournamentviewbarComponent,
+    PlayerslistComponent,
+    BracketComponent,
+    TournamentmanagementComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +59,4 @@ import { TokenIcneptorService } from './token-icneptor.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-export var currentUser: string;
-export function setcurrentUser(flag) {
-    currentUser = flag;
-}
+

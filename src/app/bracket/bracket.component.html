@@ -1,0 +1,42 @@
+
+
+<div class="tournament-container">
+  <div class="tournament-headers">
+    <h3>1/8 finału</h3>
+    <h3>Cwierćfinał</h3>
+    <h3>Półfinał</h3>
+    <h3>Finał</h3>
+    <h3>Zwyciężca</h3>
+  </div>
+  <div class="tournament-brackets">
+    <ul class="bracket bracket-1" *ngFor="let b of tournaments.winner">
+      <li class="team-item">{{tournaments.playerrount[0]}} <time>{{tournaments.playerrountgoal[0]}}:{{tournaments.playerrountgoal[1]}}</time> {{tournaments.playerrount[1]}}</li>
+      <li class="team-item">{{tournaments.playerrount[2]}} <time>{{tournaments.playerrountgoal[2]}}:{{tournaments.playerrountgoal[3]}}</time> {{tournaments.playerrount[3]}}</li>
+      <li class="team-item">{{tournaments.playerrount[4]}} <time>{{tournaments.playerrountgoal[4]}}:{{tournaments.playerrountgoal[5]}}</time> {{tournaments.playerrount[5]}}</li>
+      <li class="team-item">{{tournaments.playerrount[6]}} <time>{{tournaments.playerrountgoal[6]}}:{{tournaments.playerrountgoal[7]}}</time> {{tournaments.playerrount[7]}}</li>
+      <li class="team-item">{{tournaments.playerrount[8]}} <time>{{tournaments.playerrountgoal[8]}}:{{tournaments.playerrountgoal[9]}}</time> {{tournaments.playerrount[9]}}</li>
+      <li class="team-item">{{tournaments.playerrount[10]}} <time>{{tournaments.playerrountgoal[10]}}:{{tournaments.playerrountgoal[11]}}</time> {{tournaments.playerrount[11]}}</li>
+      <li class="team-item">{{tournaments.playerrount[12]}} <time>{{tournaments.playerrountgoal[12]}}:{{tournaments.playerrountgoal[13]}}</time> {{tournaments.playerrount[13]}}</li>
+      <li class="team-item">{{tournaments.playerrount[14]}} <time>{{tournaments.playerrountgoal[14]}}:{{tournaments.playerrountgoal[15]}}</time> {{tournaments.playerrount[15]}}</li>
+    </ul>  
+    <ul class="bracket bracket-2"  *ngFor="let b of tournaments.winner">
+      <li class="team-item">{{tournaments.quarterfinal[0]}} <time>{{tournaments.quarterfinalgoal[0]}}:{{tournaments.quarterfinalgoal[1]}}</time> {{tournaments.quarterfinal[1]}}</li>
+      <li class="team-item">{{tournaments.quarterfinal[2]}} <time>{{tournaments.quarterfinalgoal[2]}}:{{tournaments.quarterfinalgoal[3]}}</time> {{tournaments.quarterfinal[3]}}</li>
+      <li class="team-item">{{tournaments.quarterfinal[4]}} <time>{{tournaments.quarterfinalgoal[4]}}:{{tournaments.quarterfinalgoal[5]}}</time> {{tournaments.quarterfinal[5]}}</li>
+      <li class="team-item">{{tournaments.quarterfinal[6]}} <time>{{tournaments.quarterfinalgoal[6]}}:{{tournaments.quarterfinalgoal[7]}}</time> {{tournaments.quarterfinal[7]}}</li>
+    </ul>  
+    <ul class="bracket bracket-3" *ngFor="let b of tournaments.winner">
+      <li class="team-item">{{tournaments.semifinal[0]}} <time>{{tournaments.semifinalgoal[0]}}:{{tournaments.quarterfinalgoal[1]}}</time> {{tournaments.semifinal[1]}}</li>
+      <li class="team-item">{{tournaments.semifinal[2]}} <time>{{tournaments.semifinalgoal[2]}}:{{tournaments.quarterfinalgoal[3]}}</time> {{tournaments.semifinal[3]}}</li>
+    </ul>  
+    <ul class="bracket bracket-4" *ngFor="let b of tournaments.winner">
+      <li class="team-item">{{tournaments.final[0]}} <time>{{tournaments.finalgoal[0]}}:{{tournaments.finalgoal[1]}}</time> {{tournaments.final[1]}}</li>
+    </ul>  
+
+    <ul class="bracket bracket-5" *ngFor="let e of tournaments.winner">
+      <li class="team-item"> &nbsp; {{tournaments.winner[0]}}</li>
+    </ul>  
+  </div>
+</div>
+
+

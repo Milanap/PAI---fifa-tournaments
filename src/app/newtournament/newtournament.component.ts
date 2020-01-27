@@ -3,7 +3,6 @@ import { UserService } from '../user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginComponent } from '../login/login.component';
 import {Router} from "@angular/router"
-import {currentUser, setcurrentUser} from "../app.module";
 @Component({
   selector: 'app-newtournament',
   templateUrl: './newtournament.component.html',
@@ -18,9 +17,9 @@ constructor(private formBuilder: FormBuilder, private userService: UserService, 
   ngOnInit() {
 	  this.tournament = {
 		  name: '',
-		  nameplay: currentUser,
+		  nameplay: localStorage.getItem('user'),
 	  };
-	  console.log(this.tournament.nameplay);
+	  console.log(localStorage.getItem('user'));
 	 this.tournamentForm = this.formBuilder.group({
       'name': [this.tournament.username, [
         Validators.required
