@@ -31,8 +31,12 @@ constructor(private formBuilder: FormBuilder, private userService: UserService, 
 	  this.userService.addNewTournament(this.tournament).subscribe(
 	  response =>{
 		  this.title='Turniej'+' '+this.tournament.name + ' został dodany!';
+		  setTimeout(function() {
+    location.reload(); 
+}, 500);
 	  },
 	  error =>this.title='Bład!'
 	  );
+	  
   }
 }

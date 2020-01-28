@@ -47,9 +47,13 @@ isSigned=true;
 	  this.userService.AddUserToTournament(this.tournament,this.dane).subscribe(	 
 	  response =>{
 		  console.log(response);
+		   setTimeout(function() {
+    location.reload(); 
+}, 500);
 	  },
 	  error =>console.log(error)
 	  );
+	 
   }	  
 
 }

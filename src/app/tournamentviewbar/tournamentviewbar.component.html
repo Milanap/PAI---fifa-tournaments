@@ -1,9 +1,9 @@
 <mat-tab-group>
-  <mat-tab label="Lista uczestników">
-  <app-playerslist></app-playerslist>
-  </mat-tab>
 <mat-tab label="Drabinka">
 <app-bracket></app-bracket>
+  </mat-tab>
+  <mat-tab label="Lista uczestników">
+  <app-playerslist></app-playerslist>
   </mat-tab>
   <mat-tab [disabled]='!isOwner' label="Zarzadzaj turniejem">
   <app-tournamentmanagement></app-tournamentmanagement>

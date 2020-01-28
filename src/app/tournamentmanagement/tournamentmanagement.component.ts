@@ -12,7 +12,7 @@ export class TournamentmanagementComponent implements OnInit {
   score;
   ManagementForm: FormGroup; 
   tournaments;
-  isStarted=true;
+  isStarted=false;
   caseNumber=0;
   dane;
   dane1;
@@ -24,8 +24,10 @@ constructor(private formBuilder: FormBuilder, private userService: UserService )
 	  this.userService.getCurrentTournaments(this.tournament).subscribe(
 	  data => {
 		  this.tournaments = data;
-		  if(this.tournaments.playerrount.length==16)
+		  if(this.tournaments.playerrount.length==16&&this.tournaments.winner==0)
 			  this.isStarted=true;
+		  if(this.tournaments.winner==1)
+			  this.isStarted=false;
 		  if(this.tournaments.playerrountgoal.length==0&&this.tournaments.quarterfinalgoal.length==0&&this.tournaments.semifinalgoal.length==0&&this.tournaments.finalgoal.length==0)
 			  this.caseNumber=0;
 		  if(this.tournaments.playerrountgoal.length==2&&this.tournaments.quarterfinalgoal.length==0&&this.tournaments.semifinalgoal.length==0&&this.tournaments.finalgoal.length==0)
@@ -152,18 +154,39 @@ constructor(private formBuilder: FormBuilder, private userService: UserService )
 	  {
 	  switch (this.caseNumber) {
     case 0:
-	this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.first]
-	  };
-	this.addGoalsSixteen(this.dane1);	
-	this.dane2 = {
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
+	  {
+		this.dane1 = {
+			  name: 'Test',
+			  maxGoalPlay: 16,
+			  playerrountgoal: [this.score.first,this.score.second],
+			  maxPlayerQf: 8,
+		  	  quarterfinal: [this.tournaments.playerrount[0]]
+
+		  };
+		this.addGoalsSixteen(this.dane1);
+	  }
+	  else if (this.score.second>this.score.first)
+	  {
+		this.dane1 = {
+			  name: 'Test',
+			  maxGoalPlay: 16,
+			  playerrountgoal: [this.score.first,this.score.second],
+			  maxPlayerQf: 8,
+		  	  quarterfinal: [this.tournaments.playerrount[1]]
+
+		  };
+		this.addGoalsSixteen(this.dane1);
+	  }
+
+	/*this.dane2 = {
 		  name: 'Test',
 		  maxGoalPlay: 16,
 		  playerrountgoal: [this.score.second]
-	  };
+	 };
 	  this.addGoalsSixteen(this.dane2);
+	  
 	  if(this.score.first>this.score.second)
 	  {
 		  this.dane = {
@@ -181,451 +204,439 @@ constructor(private formBuilder: FormBuilder, private userService: UserService )
 	  };
 	  this.addUserQF();
 	  }	
+	  */
+
+
 setTimeout(function() {
     location.reload(); 
 }, 500);	  
         break;
     case 1:
-        this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.first]
-	  };
-	this.addGoalsSixteen(this.dane1);	
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.second]
-	  };
-	  this.addGoalsSixteen(this.dane2);
-	  if(this.score.first>this.score.second)
+		this.caseNumber=16;
+
+		if(this.score.first>this.score.second)
 	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[2]]
-	  };
-	  this.addUserQF();
-	  } else if (this.score.second>this.score.first)
+		this.dane1 = {
+			  name: 'Test',
+			  maxGoalPlay: 16,
+			  playerrountgoal: [this.score.first,this.score.second],
+			  maxPlayerQf: 8,
+		  	  quarterfinal: [this.tournaments.playerrount[2]]
+
+		  };
+		this.addGoalsSixteen(this.dane1);
+	  }
+	  else if (this.score.second>this.score.first)
 	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[3]]
-	  };
-	  this.addUserQF();
-	  }	  
+		this.dane1 = {
+			  name: 'Test',
+			  maxGoalPlay: 16,
+			  playerrountgoal: [this.score.first,this.score.second],
+			  maxPlayerQf: 8,
+		  	  quarterfinal: [this.tournaments.playerrount[3]]
+
+		  };
+		this.addGoalsSixteen(this.dane1);
+	  }
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
     case 2:
-        this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.first]
-	  };
-	this.addGoalsSixteen(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.second]
-	  };
-	  this.addGoalsSixteen(this.dane2);
-	  if(this.score.first>this.score.second)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[4]]
-	  };
-	  this.addUserQF();
-	  } else if (this.score.second>this.score.first)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[5]]
-	  };
-	  this.addUserQF();
-	  }
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlay: 16,
+				playerrountgoal: [this.score.first,this.score.second],
+				maxPlayerQf: 8,
+				  quarterfinal: [this.tournaments.playerrount[4]]
+  
+			};
+		  this.addGoalsSixteen(this.dane1);
+		}
+		else if (this.score.second>this.score.first)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlay: 16,
+				playerrountgoal: [this.score.first,this.score.second],
+				maxPlayerQf: 8,
+				  quarterfinal: [this.tournaments.playerrount[5]]
+  
+			};
+		  this.addGoalsSixteen(this.dane1);
+		}
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
     case 3:
-        this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.first]
-	  };
-	this.addGoalsSixteen(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.second]
-	  };
-	  this.addGoalsSixteen(this.dane2);
-	  if(this.score.first>this.score.second)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[6]]
-	  };
-	  this.addUserQF();
-	  } else if (this.score.second>this.score.first)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[7]]
-	  };
-	  this.addUserQF();
-	  }
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlay: 16,
+				playerrountgoal: [this.score.first,this.score.second],
+				maxPlayerQf: 8,
+				  quarterfinal: [this.tournaments.playerrount[6]]
+  
+			};
+		  this.addGoalsSixteen(this.dane1);
+		}
+		else if (this.score.second>this.score.first)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlay: 16,
+				playerrountgoal: [this.score.first,this.score.second],
+				maxPlayerQf: 8,
+				  quarterfinal: [this.tournaments.playerrount[7]]
+  
+			};
+		  this.addGoalsSixteen(this.dane1);
+		}
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
     case 4:
-        this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.first]
-	  };
-	this.addGoalsSixteen(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.second]
-	  };
-	  this.addGoalsSixteen(this.dane2);
-	  if(this.score.first>this.score.second)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[8]]
-	  };
-	  this.addUserQF();
-	  } else if (this.score.second>this.score.first)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[9]]
-	  };
-	  this.addUserQF();
-	  }
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlay: 16,
+				playerrountgoal: [this.score.first,this.score.second],
+				maxPlayerQf: 8,
+				  quarterfinal: [this.tournaments.playerrount[8]]
+  
+			};
+		  this.addGoalsSixteen(this.dane1);
+		}
+		else if (this.score.second>this.score.first)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlay: 16,
+				playerrountgoal: [this.score.first,this.score.second],
+				maxPlayerQf: 8,
+				  quarterfinal: [this.tournaments.playerrount[9]]
+  
+			};
+		  this.addGoalsSixteen(this.dane1);
+		}
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
     case 5:
-        this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.first]
-	  };
-	this.addGoalsSixteen(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.second]
-	  };
-	  this.addGoalsSixteen(this.dane2);
-	  if(this.score.first>this.score.second)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[10]]
-	  };
-	  this.addUserQF();
-	  } else if (this.score.second>this.score.first)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[11]]
-	  };
-	  this.addUserQF();
-	  }
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlay: 16,
+				playerrountgoal: [this.score.first,this.score.second],
+				maxPlayerQf: 8,
+				  quarterfinal: [this.tournaments.playerrount[10]]
+  
+			};
+		  this.addGoalsSixteen(this.dane1);
+		}
+		else if (this.score.second>this.score.first)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlay: 16,
+				playerrountgoal: [this.score.first,this.score.second],
+				maxPlayerQf: 8,
+				  quarterfinal: [this.tournaments.playerrount[11]]
+  
+			};
+		  this.addGoalsSixteen(this.dane1);
+		}
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
     case 6:
-        this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.first]
-	  };
-	this.addGoalsSixteen(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.second]
-	  };
-	  this.addGoalsSixteen(this.dane2);
-	  if(this.score.first>this.score.second)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[12]]
-	  };
-	  this.addUserQF();
-	  } else if (this.score.second>this.score.first)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[13]]
-	  };
-	  this.addUserQF();
-	  }
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlay: 16,
+				playerrountgoal: [this.score.first,this.score.second],
+				maxPlayerQf: 8,
+				quarterfinal: [this.tournaments.playerrount[12]]
+  
+			};
+		  this.addGoalsSixteen(this.dane1);
+		}
+		else if (this.score.second>this.score.first)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlay: 16,
+				playerrountgoal: [this.score.first,this.score.second],
+				maxPlayerQf: 8,
+				quarterfinal: [this.tournaments.playerrount[13]]
+  
+			};
+		  this.addGoalsSixteen(this.dane1);
+		}
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
 	case 7:
-        this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.first]
-	  };
-	this.addGoalsSixteen(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlay: 16,
-		  playerrountgoal: [this.score.second]
-	  };
-	  this.addGoalsSixteen(this.dane2);
-	  if(this.score.first>this.score.second)
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
 	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[14]]
-	  };
-	  this.addUserQF();
-	  } else if (this.score.second>this.score.first)
+		this.dane1 = {
+			  name: 'Test',
+			  maxGoalPlay: 16,
+			  playerrountgoal: [this.score.first,this.score.second],
+			  maxPlayerQf: 8,
+		  	  quarterfinal: [this.tournaments.playerrount[14]]
+
+		  };
+		this.addGoalsSixteen(this.dane1);
+	  }
+	  else if (this.score.second>this.score.first)
 	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerQf: 16,
-		  quarterfinal: [this.tournaments.playerrount[15]]
-	  };
-	  this.addUserQF();
+		this.dane1 = {
+			  name: 'Test',
+			  maxGoalPlay: 16,
+			  playerrountgoal: [this.score.first,this.score.second],
+			  maxPlayerQf: 8,
+		  	  quarterfinal: [this.tournaments.playerrount[15]]
+
+		  };
+		this.addGoalsSixteen(this.dane1);
 	  }
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
     case 8:
-        this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlayQF: 8,
-		  quarterfinalgoal: [this.score.first]
-	  };
-	this.addGoalsQF(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlayQF: 8,
-		  quarterfinalgoal: [this.score.second]
-	  };
-	  this.addGoalsQF(this.dane2);
-	  if(this.score.first>this.score.second)
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
 	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerSF: 4,
-		  semifinal: [this.tournaments.quarterfinal[0]]
-	  };
-	  this.addUserSF();
-	  } else if (this.score.second>this.score.first)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerSF: 4,
-		  semifinal: [this.tournaments.quarterfinal[1]]
-	  };
-	  this.addUserSF();
+		this.dane1 = {
+			  name: 'Test',
+			  maxGoalPlayQF: 16,
+			  quarterfinalgoal: [this.score.first,this.score.second],
+			  maxPlayerSF: 8,
+			  semifinal: [this.tournaments.quarterfinal[0]]
+
+		  };
+		this.addGoalsQF(this.dane1);
 	  }
+	  else if (this.score.second>this.score.first)
+	  {
+		this.dane1 = {
+			  name: 'Test',
+			  maxGoalPlayQF: 16,
+			  quarterfinalgoal: [this.score.first,this.score.second],
+			  maxPlayerSF: 8,
+			  semifinal: [this.tournaments.quarterfinal[1]]
+
+		  };
+		this.addGoalsQF(this.dane1);
+	  }
+
+
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
     case 9:
-         this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlayQF: 8,
-		  quarterfinalgoal: [this.score.first]
-	  };
-	this.addGoalsQF(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlayQF: 8,
-		  quarterfinalgoal: [this.score.second]
-	  };
-	  this.addGoalsQF(this.dane2);
-	  if(this.score.first>this.score.second)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerSF: 4,
-		  semifinal: [this.tournaments.quarterfinal[2]]
-	  };
-	  this.addUserSF();
-	  } else if (this.score.second>this.score.first)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerSF: 4,
-		  semifinal: [this.tournaments.quarterfinal[3]]
-	  };
-	  this.addUserSF();
-	  }
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlayQF: 16,
+				quarterfinalgoal: [this.score.first,this.score.second],
+				maxPlayerSF: 8,
+				semifinal: [this.tournaments.quarterfinal[2]]
+  
+			};
+		  this.addGoalsQF(this.dane1);
+		}
+		else if (this.score.second>this.score.first)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlayQF: 16,
+				quarterfinalgoal: [this.score.first,this.score.second],
+				maxPlayerSF: 8,
+				semifinal: [this.tournaments.quarterfinal[3]]
+  
+			};
+		  this.addGoalsQF(this.dane1);
+		}
 	  setTimeout(function() {
     location.reload(); 
-}, 1000); 
+}, 500); 
         break;
     case 10:
-         this.dane1 = {
-		  name: 'Test',
-		  maxPlayerSF: 4,
-		  quarterfinalgoal: [this.score.first]
-	  };
-	this.addGoalsQF(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlayQF: 8,
-		  quarterfinalgoal: [this.score.second]
-	  };
-	  this.addGoalsQF(this.dane2);
-	  if(this.score.first>this.score.second)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerSF: 4,
-		  semifinal: [this.tournaments.quarterfinal[4]]
-	  };
-	  this.addUserSF();
-	  } else if (this.score.second>this.score.first)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerSF: 4,
-		  semifinal: [this.tournaments.quarterfinal[5]]
-	  };
-	  this.addUserSF();
-	  }
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlayQF: 16,
+				quarterfinalgoal: [this.score.first,this.score.second],
+				maxPlayerSF: 8,
+				semifinal: [this.tournaments.quarterfinal[4]]
+  
+			};
+		  this.addGoalsQF(this.dane1);
+		}
+		else if (this.score.second>this.score.first)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlayQF: 16,
+				quarterfinalgoal: [this.score.first,this.score.second],
+				maxPlayerSF: 8,
+				semifinal: [this.tournaments.quarterfinal[5]]
+  
+			};
+		  this.addGoalsQF(this.dane1);
+		}
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
     case 11:
-         this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlayQF: 8,
-		  quarterfinalgoal: [this.score.first]
-	  };
-	this.addGoalsQF(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlayQF: 8,
-		  quarterfinalgoal: [this.score.second]
-	  };
-	  this.addGoalsQF(this.dane2);
-	  if(this.score.first>this.score.second)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerSF: 4,
-		  semifinal: [this.tournaments.quarterfinal[6]]
-	  };
-	  this.addUserSF();
-	  } else if (this.score.second>this.score.first)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerSF: 4,
-		  semifinal: [this.tournaments.quarterfinal[7]]
-	  };
-	  this.addUserSF();
-	  }
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlayQF: 16,
+				quarterfinalgoal: [this.score.first,this.score.second],
+				maxPlayerSF: 8,
+				semifinal: [this.tournaments.quarterfinal[6]]
+  
+			};
+		  this.addGoalsQF(this.dane1);
+		}
+		else if (this.score.second>this.score.first)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlayQF: 16,
+				quarterfinalgoal: [this.score.first,this.score.second],
+				maxPlayerSF: 8,
+				semifinal: [this.tournaments.quarterfinal[7]]
+  
+			};
+		  this.addGoalsQF(this.dane1);
+		}
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
     case 12:
-         this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlaySF: 4,
-		  semifinalgoal: [this.score.first]
-	  };
-	this.addGoalsSF(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlaySF: 4,
-		  semifinalgoal: [this.score.second]
-	  };
-	  this.addGoalsSF(this.dane2);
-	  if(this.score.first>this.score.second)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerF: 2,
-		  final: [this.tournaments.semifinal[0]]
-	  };
-	  this.addUserF();
-	  } else if (this.score.second>this.score.first)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerF: 2,
-		  final: [this.tournaments.semifinal[1]]
-	  };
-	  this.addUserF();
-	  }
+
+		this.caseNumber=16;
+		if(this.score.first>this.score.second)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlaySF: 16,
+				semifinalgoal: [this.score.first,this.score.second],
+				maxPlayerF: 8,
+				final: [this.tournaments.semifinal[0]]
+  
+			};
+		  this.addGoalsSF(this.dane1);
+		}
+		else if (this.score.second>this.score.first)
+		{
+		  this.dane1 = {
+				name: 'Test',
+				maxGoalPlaySF: 16,
+				semifinalgoal: [this.score.first,this.score.second],
+				maxPlayerF: 8,
+				final: [this.tournaments.semifinal[1]]
+  
+			};
+		  this.addGoalsSF(this.dane1);
+		}
+
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
-    case 13:
-         this.dane1 = {
-		  name: 'Test',
-		  maxGoalPlayF: 4,
-		  finalgoal: [this.score.first]
-	  };
-	this.addGoalsF(this.dane1);
-	this.dane2 = {
-		  name: 'Test',
-		  maxGoalPlayF: 4,
-		  finalgoal: [this.score.second]
-	  };
-	  this.addGoalsF(this.dane2);
-	  if(this.score.first>this.score.second)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerW: 1,
-		  winner: [this.tournaments.final[0]]
-	  };
-	  this.addUserW();
-	  } else if (this.score.second>this.score.first)
-	  {
-		  this.dane = {
-		  name: 'Test',
-		  maxPlayerW: 1,
-		  winner: [this.tournaments.final[1]]
-	  };
-	  this.addUserW();
-	  }
+		case 13:
+
+			this.caseNumber=16;
+			if(this.score.first>this.score.second)
+			{
+			  this.dane1 = {
+					name: 'Test',
+					maxGoalPlaySF: 16,
+					semifinalgoal: [this.score.first,this.score.second],
+					maxPlayerF: 8,
+					final: [this.tournaments.semifinal[2]]
+	  
+				};
+			  this.addGoalsSF(this.dane1);
+			}
+			else if (this.score.second>this.score.first)
+			{
+			  this.dane1 = {
+					name: 'Test',
+					maxGoalPlaySF: 16,
+					semifinalgoal: [this.score.first,this.score.second],
+					maxPlayerF: 8,
+					final: [this.tournaments.semifinal[3]]
+	  
+				};
+			  this.addGoalsSF(this.dane1);
+			}
+	
+		  setTimeout(function() {
+		location.reload(); 
+	}, 500);
+			break;
+		case 14:
+			this.caseNumber=16;
+			if(this.score.first>this.score.second)
+			{
+			  this.dane1 = {
+					name: 'Test',
+					maxGoalPlayF: 16,
+					finalgoal: [this.score.first,this.score.second],
+					maxPlayerW: 1,
+					winner: [this.tournaments.final[0]]
+	  
+				};
+			  this.addGoalsF(this.dane1);
+			}
+			else if (this.score.second>this.score.first)
+			{
+			  this.dane1 = {
+					name: 'Test',
+					maxGoalPlayF: 16,
+					finalgoal: [this.score.first,this.score.second],
+					maxPlayerW: 1,
+					winner: [this.tournaments.final[1]]
+	  
+				};
+			  this.addGoalsF(this.dane1);
+			}			
 	  setTimeout(function() {
     location.reload(); 
-}, 1000);
+}, 500);
         break;
     default:
         console.log("blad!");
